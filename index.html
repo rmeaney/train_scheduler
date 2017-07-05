@@ -7,15 +7,6 @@
 		<link rel = "stylesheet" href ="assets/css/style.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-
-
-		<style>
-			.jumbotron{
-				background-color:#7f462c;
-				color:white;
-				margin-top:10px;
-			}
-		</style>
 		  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 	</head>
 	<body>
@@ -80,88 +71,6 @@
 
   				</div>
 		</div>
-		<script>
-			  // Initialize Firebase
-			  var config = {
-			    apiKey: "AIzaSyB-z3KFtMQmAAcK24Nj9liGpwjofdYsduM",
-			    authDomain: "trainscheduler-e57cf.firebaseapp.com",
-			    databaseURL: "https://trainscheduler-e57cf.firebaseio.com",
-			    projectId: "trainscheduler-e57cf",
-			    storageBucket: "trainscheduler-e57cf.appspot.com",
-			    messagingSenderId: "1072619709864"
-			  };
-			  firebase.initializeApp(config);
-
-			   var database = firebase.database();
-
-
-			  $('#addTrainBtn').on('click', function(event){
-			  		event.preventDefault();
-
-      				//first lets grab user input
-      				var trainName = $("#trainNameInput").val().trim();
-
-      				var destinationName = $("#destinationInput").val().trim();
-
-      				var firstTrainTime = $('#firstTrainTimeInput').val().trim();
-      				
-      				var frequencyAmount = $('#frequencyInput').val().trim();
-      				
-				// create temporary data for new train
-      				var newTrain = {
-					  	 name: trainName,
-					     destination: destinationName,
-					     startTime: firstTrainTime,
-					     frequency: frequencyAmount
-			     
-			  		};
-
-			  // push new Train to database
-			 	 database.ref().push(newTrain);
-			  	
-
-
-			  // log data to console
-
-				  console.log(newTrain.name);
-				  console.log(newTrain.destination);
-				  console.log(newTrain.startTime);
-				  console.log(newTrain.frequency);
-			  // Alert
-  				alert("Train successfully added");
-
-  			 // clear Text Boxes
-  			   $("#trainNameInput").val("");
-			   $("#destinationInput").val("");
-			   $("#firstTrainTimeInput").val("");
-			   $("#frequencyInput").val("");
-  				});
-
-			  
-			  // Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
-			  database.ref().on("child_added", function(childSnapshot, prevChildKey) {
-			  	 	console.log(childSnapshot.val());
-			  	 	 // Store everything into a variable.
-					  var trainName = childSnapshot.val().name;
-					  var destinationName = childSnapshot.val().destination;
-					  var firstTrainTime = childSnapshot.val().startTime;
-					  var frequencyAmount = childSnapshot.val().frequency;
-
-					   // Employee Info
-					  console.log(trainName);
-					  console.log(destinationName);
-					  console.log(firstTrainTime);
-					  console.log(frequencyAmount);
-
-					  
-					  // add html for each entry
-					  $("#trainTable > tbody").append("<tr><td>" + trainName + "</td><td>" + destinationName + "</td><td>" +
-  frequencyAmount + "</td><td>" + firstTrainTime + "</td><td>" + "</td></tr>");
-
-			  });
-
-
-
-		</script>
+		<script type="text/javascript" src="assets/javascript/javascript.js"></script>
 	</body>
 </html>
